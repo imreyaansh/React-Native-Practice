@@ -63,7 +63,7 @@ export default class SignUpScreen extends React.Component {
               </View>
             </RadioButton.Group>
             {this.state.cpass == this.state.password && (this.state.cpass != '' || this.state.password != '')  ? 
-            <Button icon="account" mode="contained" onPress={() => console.log(this.state.email+" "+this.state.password+" "+this.state.gender+" "+this.state.name)} style={styles.ButtonInput}>
+            <Button icon="account" mode="contained" onPress={this.InsertRecordsToServer} style={styles.ButtonInput}>
               Sign Up
             </Button>: null }
           </View>
