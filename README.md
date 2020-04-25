@@ -12,7 +12,7 @@
 
 <h1>Required Softwares Mobile:</h1>
 <ul>
-  <li>Expo</li>
+  <li><a href="https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en">Expo</a></li>
   <li>command for setup CLI in desktop <b>npm install -g expo-cli</b></li>
   <li>run your app <b>expo start</b></li> 
 </ul>
