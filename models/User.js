@@ -42,10 +42,14 @@ userSchema.pre('save',function(next){
     })
 })
 
-//
+//for compare password with hash when we perform login.....
 userSchema.methods.comparePassword = function(candidatePassword) {
-    const user = this;
+    
+    const user = this; //candidatePassword = actual password comes from authRoutes.js
+    
     return new Promise ((resolve,reject)=>{
+
+        // user.password is password which user entered  
         bcrypt.compare(candidatePassword, user.password,(err,isMatch)=>{
             if(err){
                 return reject(err)
@@ -58,4 +62,5 @@ userSchema.methods.comparePassword = function(candidatePassword) {
     })
 }
 
+//whole response of code will store in User object
 mongoose.model('User', userSchema);
