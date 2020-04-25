@@ -9,6 +9,22 @@ export default class LinksScreen extends React.Component {
     email: '',
     password: ''
   };
+  sendCred = () => {
+    fetch('http://80ee92e2.ngrok.io/signin',{
+      method:"POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body:JSON.stringify({
+        "email":this.state.email,
+        "password":this.state.password,
+      })
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data);
+    })
+  }
   render(){
     return (
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -28,7 +44,7 @@ export default class LinksScreen extends React.Component {
           onChangeText={password => this.setState({ password })}
           style={styles.TextInput}
         />
-        <Button icon="login" mode="contained" onPress={() => console.log(this.state.email+" "+this.state.password)} style={styles.ButtonInput}>
+        <Button icon="login" mode="contained" onPress={this.sendCred} style={styles.ButtonInput}>
           Login
         </Button>
       </ScrollView>
