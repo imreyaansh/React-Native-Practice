@@ -6,7 +6,7 @@ const port = 3000
 const {mongoUrl} = require('./key')
 
 require('./models/User');
-
+const requireToken = require('./middleware/requireToken')
 const authRoutes = require('./routes/authRoutes')
 app.use(bodyParser.json())
 app.use(authRoutes)
@@ -18,6 +18,10 @@ mongoose.connection.on('connected',()=>{
 })
 mongoose.connection.on('error',(err)=>{
     console.log('not connected',err)
+})
+
+app.get('/',requireToken,(req,res)=>{
+    res.send("Your email is "+req.user.email)
 })
 
 app.post('/',(req, res)=>{

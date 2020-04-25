@@ -5,11 +5,30 @@ import  {AntDesign}  from 'react-native-vector-icons/MaterialIcons';
 import { ScrollView } from 'react-native-gesture-handler';
 export default class SignUpScreen extends React.Component {
   state = {
+    name:'',
     email: '',
     password: '',
     cpass: '',
     gender: '',
   };
+  sendCred = () => {
+    fetch('http://80ee92e2.ngrok.io/signup',{
+      method:"POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body:JSON.stringify({
+        "name":this.state.name,
+        "email":this.state.email,
+        "password":this.state.password,
+        "gender":this.state.gender,
+      })
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data);
+    })
+  }
   render(){
     return (
       <View style={styles.container}>
@@ -63,7 +82,7 @@ export default class SignUpScreen extends React.Component {
               </View>
             </RadioButton.Group>
             {this.state.cpass == this.state.password && (this.state.cpass != '' || this.state.password != '')  ? 
-            <Button icon="account" mode="contained" onPress={this.InsertRecordsToServer} style={styles.ButtonInput}>
+            <Button icon="account" mode="contained" onPress={this.sendCred} style={styles.ButtonInput}>
               Sign Up
             </Button>: null }
           </View>
